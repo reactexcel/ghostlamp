@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View, Dimensions} from 'react-native';
 import { Button } from 'native-base';
 
-var {height, width} = Dimensions.get('window');
 
 export default class HomeScreen extends Component {
     static navigationOptions = {
@@ -12,7 +11,6 @@ export default class HomeScreen extends Component {
       
   }
   render() {
-    let widths = width - 60;
     return (
       <View style={styles.container}>
         <View style={{flex:1,justifyContent:'flex-end'}} >
@@ -20,7 +18,7 @@ export default class HomeScreen extends Component {
         </View>
         <View style={{flex:1,justifyContent:'space-between'}} >
         <View>
-          <Text style={{fontWeight:'600',marginTop:30,fontSize:23,alignSelf:'center',}} > Welcome to Ghostlamps </Text>
+          <Text style={{fontWeight:'600',marginTop:30,fontSize:23,alignSelf:'center',}} > Welcome to Ghostlamp </Text>
           <Text style={{alignSelf:'center',textAlign:'center',fontSize:17,marginTop:25,color:'gray'}} > A Workspace to over 12 Million influencers </Text>
           <Text style={{alignSelf:'center',textAlign:'center',fontSize:17,marginTop:8,color:'gray'}} > around the global of the world </Text>
          </View>
