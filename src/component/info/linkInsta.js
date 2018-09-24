@@ -13,7 +13,7 @@ export default class InstaLinkScreen extends Component {
     return (
       <View style={styles.container}>
         <View>
-            <Text style={{marginLeft:25,fontSize:30,fontWeight:'500',marginTop:10}} > Link your Instagram Account </Text>
+            <Text style={{marginLeft:25,fontSize:25,fontWeight:'500',marginTop:10}} > Link your Instagram Account </Text>
             <Text style={{color:'gray',marginLeft:25,marginTop:14,fontSize:17}} > 
                 This step is essential. Type in your instagram
                 handle and follow the confirmation process.

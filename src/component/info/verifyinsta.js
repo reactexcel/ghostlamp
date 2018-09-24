@@ -13,7 +13,7 @@ export default class VerifyInstaScreen extends Component {
     return (
       <View style={styles.container}>
         <View>
-            <Text style={{marginLeft:25,fontSize:30,fontWeight:'500',marginTop:10}} > Confirm Your Instagram Accont </Text>
+            <Text style={{marginLeft:25,fontSize:25,fontWeight:'500',marginTop:10}} > Confirm Your Instagram Accont </Text>
             <Text style={{color:'gray',marginLeft:25,marginTop:14,fontSize:17}} > 
                 We genrated a confirmation text to you.
                 Please add it to your bio on instagram and 

@@ -7,8 +7,12 @@ export default class HomeScreen extends Component {
     static navigationOptions = {
         header: null
     };
-  componentWillMount(){
-      
+  redirect = e => {
+      if(e == 'login'){
+          this.props.navigation.navigate('login')
+      } else if ( e == 'create') {
+          this.props.navigation.navigate('signup')
+      }
   }
   render() {
     return (
@@ -24,12 +28,12 @@ export default class HomeScreen extends Component {
          </View>
           <View style={{alignSelf:'center',marginBottom:30}} >
           <View style={{alignSelf:'center',marginBottom:25}} >
-          <Button style={{width:200,alignText:'center',justifyContent:'center'}} >
+          <Button style={{width:200,alignText:'center',justifyContent:'center'}} onPress={() => this.redirect('login')} >
               <Text style={{fontSize:18,fontWeight:'400',alignSelf:'center',color:'white'}} >Login Now</Text>
           </Button>
           </View>
           <View style={{alignSelf:'center'}} >
-          <Button  style={{ shadowOffset:{  width: 0,  height: 1,  },elevation:5,shadowColor: 'gray',shadowOpacity: 0.9, backgroundColor:'white',width:200,alignText:'center',justifyContent:'center'}} elevation={3} >
+          <Button  style={{ shadowOffset:{  width: 0,  height: 1,  },elevation:5,shadowColor: 'gray',shadowOpacity: 0.9, backgroundColor:'white',width:200,alignText:'center',justifyContent:'center'}} elevation={3} onPress={() => this.redirect('create')} >
               <Text style={{fontSize:18,fontWeight:'400',alignSelf:'center'}}  >Create Account</Text>
           </Button>
           </View>

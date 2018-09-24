@@ -12,8 +12,9 @@ export default class InfoScreen extends Component {
   render() {
     return (
       <View style={styles.container}>
+        <View style={{marginTop:50,marginLeft:25,flexDirection:'row'}} />      
         <View>
-            <Text style={{marginLeft:25,fontSize:30,fontWeight:'500',marginTop:10}} > Let's Get Started </Text>
+            <Text style={{marginLeft:25,fontSize:25,fontWeight:'500',marginTop:10}} > Let's Get Started </Text>
             <Text style={{color:'gray',marginLeft:25,marginTop:14,fontSize:17}} > 
                 Ghostlamp works hard to preserve the
                 authenticity in influecing, and we go to great
