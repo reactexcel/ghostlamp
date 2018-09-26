@@ -62,12 +62,20 @@ class LoginScreen extends Component {
           this.setState({isEmailValid:true})
       }
   }
+  back = e => {
+      this.props.navigation.goBack()
+  }
   render() {
+    const { focus } = this.state;
+    let emailStyle = focus == 'email' ? {backgroundColor:'white'} :{backgroundColor:'#EDF2F5'}
+    let passwordStyle = focus == 'password' ? {backgroundColor:'white'} :{backgroundColor:'#EDF2F5'}
     return (
       <View style={styles.container}>
         <View style={{marginTop:50,marginLeft:25,flexDirection:'row'}} >
+            <TouchableOpacity style={{flexDirection:'row'}} onPress={this.back} >        
             <Icon name="md-arrow-back" style={{alignSelf:'center',color:'#3E88FB'}} size={8} />
             <Text style={{fontSize:18,color:'#3E88FB',alignSelf:'center'}} > Back </Text>
+            </TouchableOpacity>
         </View>
         <View>
             <Text style={{marginLeft:25,fontSize:30,fontWeight:'500',marginTop:10}} > Keep Connected </Text>
@@ -75,8 +83,8 @@ class LoginScreen extends Component {
             <Text style={{color:'gray',marginLeft:25,marginTop:5,fontSize:17}} > password to get access your account. </Text>
         </View>
         <View style={{marginTop:25}} >
-        <View style={{marginLeft:30,marginRight:30,marginTop:30,borderTopRightRadius:10,borderTopLeftRadius:10,borderBottomWidth:0,borderColor:'gray',elevation:5,borderWidth:1,justifyContent:'center'}} >
-            <View style={{flexDirection:'row',marginLeft:20,marginTop:25}} >
+        <View style={[{marginLeft:30,marginRight:30,marginTop:30,backgroundColor:'#EDF2F5',elevation:10,borderTopRightRadius:10,borderTopLeftRadius:10,justifyContent:'center'},emailStyle]} >
+            <View style={{flexDirection:'row',marginLeft:20,marginTop:15}} >
                 <Item success={this.state.isEmailValid? true:false} error={this.state.isEmailValid === false ? true: false} floatingLabel style={{flex:1,marginRight:15}} >
                     <Icon name="mail" style={{height:30,width:30}} />
                     <Label>Email Address</Label>
@@ -85,8 +93,8 @@ class LoginScreen extends Component {
                 </Item>
             </View>
         </View>
-        <View style={{marginLeft:30,marginRight:30,borderBottomRightRadius:10,borderBottomLeftRadius:10,borderColor:'gray',borderTopWidth:0,elevation:5,borderWidth:1,justifyContent:'center'}} >
-            <View style={{flexDirection:'row',marginLeft:20,marginTop:20,paddingBottom:10}} >
+        <View style={[{marginLeft:30,marginRight:30,borderBottomRightRadius:10,borderBottomLeftRadius:10,elevation:5,justifyContent:'center'},passwordStyle]} >
+            <View style={{flexDirection:'row',marginLeft:20,marginTop:15,paddingBottom:10}} >
                 <Item floatingLabel style={{flex:1,marginRight:15}} error={this.state.isPassword? true: false} >
                     <Icon name="lock" style={{height:30,width:30}} />
                     <Label>Password</Label>
@@ -148,7 +156,7 @@ export default connect(
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'white',
+    backgroundColor: '#F8FAFB',
   },
   welcome: {
     fontSize: 20,

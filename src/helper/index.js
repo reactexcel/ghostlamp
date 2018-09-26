@@ -2,7 +2,7 @@ export function validatePhoneNo(fieldValue) {
     if (/^(\s*\d\s*){10}$/.test(fieldValue)) {
       return true;
     } else {
-      return "Invalid number must be ten digits";
+      return false;
     }
   }
 

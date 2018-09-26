@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View, Dimensions, TextInput} from 'react-native';
-import { Container, Header, Content, Item, Input, Icon, Button } from 'native-base';
+import { Container, Header, Content, Item, Input, Icon, Button, Label } from 'native-base';
 
 export default class VerifyInstaScreen extends Component {
     static navigationOptions = {
@@ -12,9 +12,13 @@ export default class VerifyInstaScreen extends Component {
   render() {
     return (
       <View style={styles.container}>
+        <View style={{marginTop:50,marginLeft:25,flexDirection:'row'}} />            
         <View>
-            <Text style={{marginLeft:25,fontSize:25,fontWeight:'500',marginTop:10}} > Confirm Your Instagram Accont </Text>
-            <Text style={{color:'gray',marginLeft:25,marginTop:14,fontSize:17}} > 
+            <Text style={{marginLeft:25,fontSize:25,fontWeight:'500',marginTop:10}} > 
+                Confirm Your Instagram 
+                Account 
+            </Text>
+            <Text style={{color:'gray',marginLeft:25,marginTop:14,fontSize:17,lineHeight:25}} > 
                 We genrated a confirmation text to you.
                 Please add it to your bio on instagram and 
                 come back here to confirm. Note that after 
@@ -23,19 +27,17 @@ export default class VerifyInstaScreen extends Component {
             </Text>
         </View>
         <View style={{marginTop:25}} >
-        <View style={{marginLeft:30,marginRight:30,marginTop:30,borderTopRightRadius:10,borderTopLeftRadius:10,borderBottomWidth:0,borderColor:'gray',elevation:5,borderWidth:1,justifyContent:'center'}} >
-            <View style={{flexDirection:'row',marginLeft:20,marginTop:25}} >
-              
-                <Icon name="mail" />
+        <View style={{marginLeft:30,marginRight:30,marginTop:30,borderRadius:10,elevation:5,height:70,justifyContent:'center',backgroundColor:'#EDF2F5'}} >
+            <View style={{flexDirection:'row',marginLeft:20,marginTop:5}} >
+            <Item floatingLabel style={{flex:1,marginRight:15,marginBottom:25,marginLeft:10,alignSelf:'center'}}  >
+                    <Label>Confirmation Text</Label>
+                    <Input  onFocus={()=>{ }} onChangeText={(e)=>{  }} type={""} />
+                    <Icon name="md-refresh" style={{height:30,width:30}} />
+                </Item>
             </View>
         </View>
-        <View style={{marginLeft:30,marginRight:30,borderBottomRightRadius:10,borderBottomLeftRadius:10,borderColor:'gray',borderTopWidth:0,elevation:5,borderWidth:1,justifyContent:'center'}} >
-            <View style={{flexDirection:'row',marginLeft:20,marginTop:20,paddingBottom:10}} >
-                <Icon name="lock" />
-            </View>
         </View>
-        </View>
-        <View style={{flex:1,justifyContent:'center',alignItems:'center'}} >
+        <View style={{flex:1,marginTop:35,alignItems:'center'}} >
         <View style={{justifyContent:'space-between'}} >
           <View style={{alignSelf:'center',marginBottom:30}} >
           <View style={{alignSelf:'center',marginBottom:25}} >
@@ -54,7 +56,7 @@ export default class VerifyInstaScreen extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'white',
+    backgroundColor: '#F8FAFB',
   },
   welcome: {
     fontSize: 20,

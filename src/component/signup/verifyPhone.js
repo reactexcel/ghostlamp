@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View, Dimensions, TextInput, TouchableOpacity } from 'react-native';
-import { Container, Header, Content, Item, Input, Icon, Button } from 'native-base';
+import { Container, Header, Content, Item, Input, Icon, Button, Label } from 'native-base';
 
 export default class VerifyPhoneScreen extends Component {
     static navigationOptions = {
@@ -10,11 +10,15 @@ export default class VerifyPhoneScreen extends Component {
       
   }
   render() {
-    const { next, back } = this.props;
+    const {
+        focus,
+    } = this.props.state;
+    let codeStyle = focus == 'code' ? {backgroundColor:'white'} :{backgroundColor:'#EDF2F5'}    
+    const { next, back, onFocus } = this.props;
     return (
       <View style={styles.container}>
         <View style={{marginTop:50,marginLeft:25,flexDirection:'row'}} >
-            <TouchableOpacity onPress={back} >
+            <TouchableOpacity onPress={back} style={{flexDirection:'row'}} >
             <Icon name="md-arrow-back" style={{alignSelf:'center',color:'#3E88FB'}} size={8} />
             <Text style={{fontSize:18,color:'#3E88FB',alignSelf:'center'}} > Back </Text>
             </TouchableOpacity>
@@ -25,15 +29,13 @@ export default class VerifyPhoneScreen extends Component {
             <Text style={{color:'gray',marginLeft:25,marginTop:5,fontSize:17}} > code in that message. </Text>
         </View>
         <View style={{marginTop:25}} >
-        <View style={{marginLeft:30,marginRight:30,marginTop:30,borderTopRightRadius:10,borderTopLeftRadius:10,borderBottomWidth:0,borderColor:'gray',elevation:5,borderWidth:1,justifyContent:'center'}} >
-            <View style={{flexDirection:'row',marginLeft:20,marginTop:25}} >
-              
-                <Icon name="mail" />
-            </View>
-        </View>
-        <View style={{marginLeft:30,marginRight:30,borderBottomRightRadius:10,borderBottomLeftRadius:10,borderColor:'gray',borderTopWidth:0,elevation:5,borderWidth:1,justifyContent:'center'}} >
-            <View style={{flexDirection:'row',marginLeft:20,marginTop:20,paddingBottom:10}} >
-                <Icon name="lock" />
+        <View style={[{marginLeft:30,marginRight:30,marginTop:30,borderRadius:10,elevation:5,height:90,justifyContent:'center'},codeStyle]} >
+            <View style={{flexDirection:'row',marginLeft:20,marginTop:10,justifyContent:'center'}} >
+                <Item floatingLabel style={{flex:1,marginRight:15,marginBottom:25,marginLeft:10,alignSelf:'center'}}  >
+                    <Icon name="mail" style={{height:30,width:30}} />                  
+                    <Label>4 Digit Code</Label>
+                    <Input  onFocus={()=>{ onFocus('code') }} onChangeText={(e)=>{ }} keyboardType={'numeric'}  />
+                </Item>
             </View>
         </View>
         </View>
@@ -56,7 +58,7 @@ export default class VerifyPhoneScreen extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'white',
+    backgroundColor: '#F8FAFB',
   },
   welcome: {
     fontSize: 20,

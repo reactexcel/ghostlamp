@@ -8,6 +8,7 @@ import SignupScreen from '../component/signup/signupPage';
 import AgreeScreen from '../component/signup/agreePage';
 import ConfirmPhoneScreen from '../component/signup/confirmPhone';
 import VerifyPhoneScreen from '../component/signup/verifyPhone';
+import { Switch } from 'native-base';
 
 
 class Signup extends Component {
@@ -20,9 +21,14 @@ class Signup extends Component {
         this.state = {
             email:'',
             password:'',
+            confirmPassword:'',
             isEmailValid:'',
             isError:'',
+            phone:'',
+            focus:'',
+            callingCode:'1',
             isRemember:false,
+            isPhone:false,
             isPassword:false,
             isLoading:false,
             page: 0,
@@ -31,9 +37,6 @@ class Signup extends Component {
             policy:false,
         }
     }
-  componentWillMount(){
-      
-  }
 
   componentWillReceiveProps(nextProps){
 
@@ -44,8 +47,52 @@ class Signup extends Component {
   }
   onChange = (type,e) => {
     if(type=='email'){
-        this.setState({email:e})
+        this.setState({
+            email:e
+        })
+    } else if (type == 'confirmPassword'){
+        this.setState({
+            confirmPassword:e
+        },()=>{
+            this.checkPassword()
+        })
+    } else if (type == 'password'){
+        this.setState({
+            password:e
+        })
+    } else if (type == 'terms'){
+        this.setState({
+            terms: !this.state.terms
+        })
+    } else if (type == 'policy'){
+        this.setState({
+            policy: !this.state.policy
+        })
+    } else if (type == 'phone' ){
+        this.setState({
+            phone: e
+        })
+    } else if (type == 'callingCode'){
+        this.setState({
+            callingCode:e.callingCode
+        })
     }
+  }
+  checkPassword = e => {
+      if(this.state.password == this.state.confirmPassword ){
+        this.setState({
+            isPassword:false
+        })
+      } else {
+          this.setState({
+              isPassword: true
+          })
+      }
+  }
+  checkPhone = e => {
+      // check phone number
+      let check = helper.validatePhoneNo(e);
+      this.setState({isPhone:!check})
   }
   checkEmail = e => {
     //check regex for email and set state
@@ -60,15 +107,46 @@ class Signup extends Component {
     this.setState({focus:e})
   }
   next = e => {
-      let page = this.state.page;
-      console.log(page,'next')
-      if(page == 3 ){
-          this.props.navigation.navigate('infoScreen')
-      } else {
-          page = page + 1;
-          console.log(page)
-          this.setState({ page })
-      }
+    let page = this.state.page;
+    let next = true;
+    this.setState({focus:''})
+    if(page == 0){
+        if(this.state.email != '' && this.state.password != '' && this.state.confirmPassword != '' && isEmailValid){
+            next = true;
+            this.setState({
+                isEmailValid: true
+            })
+        } else {
+            next = false;
+            if( this.state.password == '' && this.state.confirmPassword == ''){
+                this.setState({
+                    isPassword: true
+                })
+            }
+            this.checkEmail(this.state.email);
+        }
+    } else if(page == 1){
+        if ( this.state.terms && this.state.policy){
+            next = true        
+        } else {
+            next = false;
+        }
+    } else if(page == 2){
+        // fire api for signup
+        if (this.state.phone != ''){
+            next = true
+        } else {
+            next = false
+        }
+    } else if(page == 3){
+        //fire api for code
+        this.props.navigation.navigate('infoScreen')
+    }
+
+    if(next){
+        page = page + 1;
+        this.setState({ page })
+    }
   }
   back = e => {
     let page = this.state.page;
@@ -80,7 +158,6 @@ class Signup extends Component {
     }
   }
   render() {
-      console.log(this.state,'asdasd')
       const { page } = this.state;
     return (
       <View style={styles.container}>
@@ -100,12 +177,16 @@ class Signup extends Component {
                 state={this.state}
                 next={this.next}
                 back={this.back}
+                onChange={this.onChange}                
             />
         }
         { page == 2 && 
             <ConfirmPhoneScreen 
                 state={this.state}
                 next={this.next}
+                onChange={this.onChange}
+                checkPhone={this.checkPhone}        
+                onFocus={this.onFocus}                
                 back={this.back}
             />
         }
@@ -113,6 +194,8 @@ class Signup extends Component {
             <VerifyPhoneScreen
                 state={this.state}
                 next={this.next}
+                onFocus={this.onFocus} 
+                onChange={this.onChange}                
                 back={this.back}
             />
 
@@ -124,7 +207,7 @@ class Signup extends Component {
 
 
 const mapStateToProps = state => ({
-    login: state.login
+    user: state.login
 })
 
 export default connect(
@@ -135,7 +218,7 @@ export default connect(
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'white',
+    backgroundColor: '#F8FAFB',
   },
   welcome: {
     fontSize: 20,
