@@ -83,7 +83,7 @@ class LoginScreen extends Component {
             <Text style={{color:'gray',marginLeft:25,marginTop:5,fontSize:17}} > password to get access your account. </Text>
         </View>
         <View style={{marginTop:25}} >
-        <View style={[{marginLeft:30,marginRight:30,marginTop:30,backgroundColor:'#EDF2F5',elevation:10,borderTopRightRadius:10,borderTopLeftRadius:10,justifyContent:'center'},emailStyle]} >
+        <View style={[{marginLeft:30,marginRight:30,marginTop:30,elevation:10,borderTopRightRadius:10,borderTopLeftRadius:10,justifyContent:'center'},emailStyle]} >
             <View style={{flexDirection:'row',marginLeft:20,marginTop:15}} >
                 <Item success={this.state.isEmailValid? true:false} error={this.state.isEmailValid === false ? true: false} floatingLabel style={{flex:1,marginRight:15}} >
                     <Icon name="mail" style={{height:30,width:30}} />
