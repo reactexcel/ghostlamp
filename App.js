@@ -1,20 +1,64 @@
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View,Root, Dimensions} from 'react-native';
+import { StackNavigator, TabNavigator, TabBarBottom } from 'react-navigation';
+import Icon from 'react-native-vector-icons/FontAwesome';
 import SplashScreen from './src/component/splashScreen';
-import HomeScreen from './src/component/homePage';
+import WelcomeScreen from './src/component/WelcomePage';
 import LoginScreen from './src/component/LoginScreen';
 import Signup from './src/modules/signup';
 import VerifyInstaScreen from './src/component/info/verifyinsta';
 import InfoScreen from './src/component/info/bioScreen';
 import InstaLinkScreen from './src/component/info/linkInsta';
-import { StackNavigator } from 'react-navigation'
+import Home from './src/modules/home';
+import Notifications from './src/component/notification/notif';
+import Invites from './src/component/invite/invite';
+import Profile from './src/component/profile/profile';
+
+const tabView =  TabNavigator(
+  {
+    Home: { screen: Home },
+    Invite: { screen: Invites },
+    Notification: { screen: Notifications },
+    Profile: { screen: Profile }
+  },
+  {
+    navigationOptions: ({ navigation }) => ({
+      tabBarIcon: ({ focused, tintColor }) => {
+        const { routeName } = navigation.state;
+        let iconName;
+        if (routeName === 'Home') {
+          iconName = `briefcase`;
+        } else if (routeName === 'Invite') {
+          iconName = `envelope`;
+        }else if (routeName === 'Notification') {
+          iconName = `bell`;
+        }else if (routeName === 'Profile') {
+          iconName = `user`;
+        }
+
+        // You can return any component that you like here! We usually use an
+        // icon component from react-native-vector-icons
+        return <Icon name={iconName} style={[focused?{color:'#3E88FB',marginTop:5}:{color:'gray',marginTop:5}]} size={25} color="#3E88FB" />;
+      },
+    }),
+    tabBarComponent: TabBarBottom,
+    tabBarPosition: 'bottom',
+    tabBarOptions: {
+      activeTintColor: '#3E88FB',
+      inactiveTintColor: 'gray',
+    },
+    animationEnabled: false,
+    swipeEnabled: false,
+  }
+);
 
 export const AppScreen = StackNavigator({
-  infoScreen: { screen: InfoScreen },
+  home: { screen: tabView },
   splashScreen: { screen: SplashScreen },
+  welcomeScreen: { screen: WelcomeScreen },
   login: { screen: LoginScreen },
   signup: { screen: Signup },
-  home: { screen: HomeScreen },
+  infoScreen: { screen: InfoScreen },
   linkInsta: { screen: InstaLinkScreen },
   verifyInsta: { screen: VerifyInstaScreen },
 });

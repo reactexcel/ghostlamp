@@ -3,7 +3,7 @@ import {Platform, StyleSheet, Text, View, Dimensions} from 'react-native';
 import { Button } from 'native-base';
 
 
-export default class HomeScreen extends Component {
+export default class WelcomeScreen extends Component {
     static navigationOptions = {
         header: null
     };
