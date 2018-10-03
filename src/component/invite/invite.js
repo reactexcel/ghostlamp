@@ -22,11 +22,23 @@ class Invites extends Component {
   }
 
   render() {
+      let selection = 2;
     return (
       <View style={styles.container}>
-        <Text>
-        Invites
-        </Text>
+        <Segment style={{marginTop:15}} >
+          <Button first style={{width:100,height:40,borderRightWidth:0,justifyContent:'center'}} active={selection == 0?true:false} onPress={()=>{ this.setState({selection:0}) }}  >
+            <Text style={[selection == 0 ? {color:'white',fontSize:16}:{fontSize:16}]} >All Invite</Text>
+          </Button>
+          <Button style={{width:80,height:40,borderRightWidth:0,justifyContent:'center'}} active={selection == 1?true:false} onPress={()=>{ this.setState({selection:1}) }} >
+            <Text style={[selection == 1 ? {color:'white',fontSize:16}:{fontSize:16}]} >Accepted</Text>
+          </Button>
+          <Button style={{width:80,height:40,borderRightWidth:0,justifyContent:'center'}} active={selection == 2?true:false} onPress={()=>{ this.setState({selection:2}) }} >
+            <Text style={[selection == 2 ? {color:'white',fontSize:16}:{fontSize:16}]} >Rejected</Text>
+          </Button>
+          <Button last style={{width:80,height:40,justifyContent:'center'}} active={selection == 3?true:false} onPress={()=>{ this.setState({selection:3}) }} >
+            <Text style={[selection == 3 ? {color:'white',fontSize:16}:{fontSize:16}]} >Expired</Text>
+          </Button>
+        </Segment>
       </View>
     );
   }

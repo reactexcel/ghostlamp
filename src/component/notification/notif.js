@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux'
 import { TabNavigator } from 'react-navigation'
 import { Container, Header, Content, Segment, Button } from 'native-base';
+import Icon from 'react-native-vector-icons/FontAwesome';
 import * as action from '../../actions/index';
 import * as helper from '../../helper';
 
@@ -24,9 +25,23 @@ class Notifications extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>
-            notification
-        </Text>
+
+            <View style={{height:80,margin:14,borderBottomWidth:0.5,borderBottomColor:'gray'}} >
+            <View style={{flexDirection:'row',flex:1}} >
+                <View style={{justifyContent:'center',marginLeft:20,}} >
+                  <Icon name="mail" />
+                </View>
+                <View style={{flex:1,marginTop:5,marginLeft:30}} >
+                  <Text style={{alignItems:'center'}} >
+                    You have earned new balance from last week total transaction
+                  </Text>
+                  <Text style={{fontSize:12,marginTop:5}} >
+                    12 mins
+                  </Text>
+                </View>
+            </View>
+          </View>
+      
       </View>
     );
   }
@@ -47,16 +62,8 @@ export default connect(
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F8FAFB',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
+    marginLeft:20,
+    marginRight:20,
+    marginTop:10
+  }
 });

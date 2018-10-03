@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View,Root, Dimensions} from 'react-native';
+import {Platform, StyleSheet, Text, View,Root, Dimensions, TouchableOpacity} from 'react-native';
 import { StackNavigator, TabNavigator, TabBarBottom } from 'react-navigation';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import SplashScreen from './src/component/splashScreen';
@@ -12,14 +12,21 @@ import InstaLinkScreen from './src/component/info/linkInsta';
 import Home from './src/modules/home';
 import Notifications from './src/component/notification/notif';
 import Invites from './src/component/invite/invite';
-import Profile from './src/component/profile/profile';
+import Profile from './src/modules/profile';
+import Search from './src/component/search/search';
+
+const homeView = StackNavigator({
+  Home: { screen: Home , navigationOptions:{ header: null} },
+  Search: { screen: Search }
+}) 
+
 
 const tabView =  TabNavigator(
   {
-    Home: { screen: Home },
+    Home: { screen: homeView },
     Invite: { screen: Invites },
     Notification: { screen: Notifications },
-    Profile: { screen: Profile }
+    Profile: { screen: Profile },
   },
   {
     navigationOptions: ({ navigation }) => ({
@@ -53,7 +60,27 @@ const tabView =  TabNavigator(
 );
 
 export const AppScreen = StackNavigator({
-  home: { screen: tabView },
+  home: { screen: tabView, navigationOptions:({navigation})=>{
+    console.log(navigation,'checkkk',navigation._childrenNavigation)
+    const { routes, index } = navigation.state;
+    const navigationOptions = {};
+    if(routes[index].routeName != 'Home'){
+      navigationOptions.title = routes[index].routeName;
+      navigationOptions.headerTitleStyle = { textAlign: 'center' };
+      navigationOptions.headerRight = <Icon name='search' size={15} style={{marginRight:15}} onPress={()=>{navigation.navigate('Search')}} />
+    } else {
+      console.log(routes[index])
+      const data = routes[index]
+      if(data.routes[data.index].routeName == 'Home'){
+        navigationOptions.title = data.routes[data.index].routeName;
+        navigationOptions.headerTitleStyle = { textAlign: 'center' };
+        navigationOptions.headerRight = <Icon name='search' size={15} style={{marginRight:15}} onPress={()=>{navigation.navigate('Search')}} />
+      } else {
+        navigationOptions.header = null;
+      }
+    }
+      return navigationOptions;
+  } },
   splashScreen: { screen: SplashScreen },
   welcomeScreen: { screen: WelcomeScreen },
   login: { screen: LoginScreen },

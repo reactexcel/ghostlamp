@@ -14,14 +14,16 @@ import Actions from '../component/home/actions';
 
 
 class Home extends Component {
-    static navigationOptions = {
-        header:null
+    static navigationOptions = ({ navigation }) => {
+      return {
+        headerTitle: 'Home'
+      }
     };
 
     constructor(props){
         super(props);
         this.state = {
-          selection:1,
+          selection:0,
           isShow:true,
         }
         
