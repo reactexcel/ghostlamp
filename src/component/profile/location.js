@@ -11,6 +11,13 @@ export default class Location extends Component {
         header:null
     };
   render() {
+    const {
+        country,
+        city,
+        postalCode,
+        focus
+    } = this.props.state;
+    const { onChange, onFocus } = this.props;
     return (
       <View style={styles.container}>
         <View style={{marginTop:5}} >
@@ -18,7 +25,7 @@ export default class Location extends Component {
             <View style={{flexDirection:'row',marginLeft:20,marginTop:15}} >
                 <Item  floatingLabel style={{flex:1,marginRight:15}} >
                     <Label>Country</Label>
-                    <Input value={''} onFocus={()=>{  }} onChangeText={(e)=>{  }} keyboardType={'email-address'} type={'email'} />
+                    <Input value={country} onFocus={()=>{ onFocus('country') }} onChangeText={(e)=>{ onChange('country',e) }} />
                 </Item>
             </View>
         </View>
@@ -26,7 +33,7 @@ export default class Location extends Component {
             <View style={{flexDirection:'row',marginLeft:20,marginTop:15}} >
                 <Item floatingLabel style={{flex:1,marginRight:15}} >
                     <Label>Town</Label>
-                    <Input value={''} onFocus={()=>{  }} onChangeText={(e)=>{  }}  />
+                    <Input value={city} onFocus={()=>{ onFocus('city') }} onChangeText={(e)=>{ onchange('city',e) }}  />
                 </Item>
             </View>
         </View>
@@ -34,7 +41,7 @@ export default class Location extends Component {
             <View style={{flexDirection:'row',marginLeft:20,marginTop:15,paddingBottom:5}} >
                 <Item floatingLabel style={{flex:1,marginRight:15}} >
                     <Label>Postal Code</Label>
-                    <Input value={''} onFocus={()=>{  }} onChangeText={(e)=>{  }} />
+                    <Input value={postalCode} onFocus={()=>{ onFocus('postCode') }} onChangeText={(e)=>{ onChange('postalCode',e) }}  />
                 </Item>
             </View>
         </View>
@@ -44,7 +51,7 @@ export default class Location extends Component {
         <View style={{justifyContent:'space-between'}} >
           <View style={{alignSelf:'center',marginBottom:30}} >
           <View style={{alignSelf:'center',marginBottom:20}} >
-          <Button style={{width:300,alignText:'center',justifyContent:'center'}}   >
+          <Button style={{width:300,alignText:'center',justifyContent:'center',backgroundColor:'#37A1F6'}}   >
               <Text style={{fontSize:18,fontWeight:'400',alignSelf:'center',color:'white'}} >Save Change</Text>
           </Button>
           </View>

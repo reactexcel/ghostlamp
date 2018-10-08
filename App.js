@@ -66,14 +66,16 @@ export const AppScreen = StackNavigator({
     const navigationOptions = {};
     if(routes[index].routeName != 'Home'){
       navigationOptions.title = routes[index].routeName;
-      navigationOptions.headerTitleStyle = { textAlign: 'center' };
+      navigationOptions.headerTitleStyle = Platform.OS == 'ios'? {textAlign:'center'} : {textAlign:'center',align:'center',width:'83%'} 
+      navigationOptions.headerLeft = Platform.OS == 'ios'? null : <View />;      
       navigationOptions.headerRight = <Icon name='search' size={15} style={{marginRight:15}} onPress={()=>{navigation.navigate('Search')}} />
     } else {
       console.log(routes[index])
       const data = routes[index]
       if(data.routes[data.index].routeName == 'Home'){
         navigationOptions.title = data.routes[data.index].routeName;
-        navigationOptions.headerTitleStyle = { textAlign: 'center' };
+        navigationOptions.headerTitleStyle = Platform.OS == 'ios'? {textAlign:'center'} : {textAlign:'center',align:'center',width:'83%'} 
+        navigationOptions.headerLeft = Platform.OS == 'ios'? null : <View />;
         navigationOptions.headerRight = <Icon name='search' size={15} style={{marginRight:15}} onPress={()=>{navigation.navigate('Search')}} />
       } else {
         navigationOptions.header = null;

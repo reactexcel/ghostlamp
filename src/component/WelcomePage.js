@@ -28,7 +28,7 @@ export default class WelcomeScreen extends Component {
          </View>
           <View style={{alignSelf:'center',marginBottom:30}} >
           <View style={{alignSelf:'center',marginBottom:25}} >
-          <Button style={{width:200,alignText:'center',justifyContent:'center'}} onPress={() => this.redirect('login')} >
+          <Button style={{width:200,alignText:'center',justifyContent:'center',backgroundColor:'#37A1F6'}} onPress={() => this.redirect('login')} >
               <Text style={{fontSize:18,fontWeight:'400',alignSelf:'center',color:'white'}} >Login Now</Text>
           </Button>
           </View>

@@ -67,6 +67,7 @@ class LoginScreen extends Component {
   }
   render() {
     const { focus } = this.state;
+    console.log(this.state,'checkssss')
     let emailStyle = focus == 'email' ? {backgroundColor:'white'} :{backgroundColor:'#EDF2F5'}
     let passwordStyle = focus == 'password' ? {backgroundColor:'white'} :{backgroundColor:'#EDF2F5'}
     return (
@@ -93,7 +94,7 @@ class LoginScreen extends Component {
                 </Item>
             </View>
         </View>
-        <View style={[{marginLeft:30,marginRight:30,borderBottomRightRadius:10,borderBottomLeftRadius:10,elevation:5,justifyContent:'center'},passwordStyle]} >
+        <View style={[{marginLeft:30,marginRight:30,borderBottomRightRadius:10,borderBottomLeftRadius:10,elevation:10,justifyContent:'center'},passwordStyle]} >
             <View style={{flexDirection:'row',marginLeft:20,marginTop:15,paddingBottom:10}} >
                 <Item floatingLabel style={{flex:1,marginRight:15}} error={this.state.isPassword? true: false} >
                     <Icon name="lock" style={{height:30,width:30}} />
@@ -127,7 +128,7 @@ class LoginScreen extends Component {
         <View style={{justifyContent:'space-between'}} >
           <View style={{alignSelf:'center',marginBottom:30}} >
           <View style={{alignSelf:'center',marginBottom:25}} >
-          <Button style={{width:300,alignText:'center',justifyContent:'center'}} onPress={this.onSubmit} >
+          <Button style={{width:300,alignText:'center',justifyContent:'center',backgroundColor:'#37A1F6'}} onPress={this.onSubmit} >
               <Text style={{fontSize:18,fontWeight:'400',alignSelf:'center',color:'white'}} >Get Login</Text>
           </Button>
           </View>

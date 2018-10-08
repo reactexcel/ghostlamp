@@ -39,7 +39,6 @@ export default class SignupScreen extends Component {
             <Text style={{color:'gray',marginLeft:25,marginTop:5,fontSize:17}} > and bio to create account. </Text>
         </View>
         <View style={{marginTop:20}} >
-
             <View style={[{marginLeft:30,marginRight:30,marginTop:30,borderTopRightRadius:10,borderTopLeftRadius:10,borderBottomWidth:0,elevation:5,justifyContent:'center'},emailStyle]} >
                 <View style={{flexDirection:'row',marginLeft:20,marginTop:25}} >
                     <Item success={isEmailValid? true:false} error={isEmailValid === false ? true: false} floatingLabel style={{flex:1,marginRight:15}} >
@@ -60,7 +59,6 @@ export default class SignupScreen extends Component {
                     </Item>
                 </View>
             </View>
-
             <View style={[{marginLeft:30,marginRight:30,borderBottomRightRadius:10,borderBottomLeftRadius:10,borderTopWidth:0,elevation:5,justifyContent:'center'},confirmStyle]} >
                 <View style={{flexDirection:'row',marginLeft:20,marginTop:20,paddingBottom:10}} >
                     <Item floatingLabel style={{flex:1,marginRight:15}} error={isPassword? true: false} >
@@ -73,13 +71,12 @@ export default class SignupScreen extends Component {
                     </Item>
                 </View>
             </View>
-
         </View>
         <View style={{flex:1,justifyContent:'center',alignItems:'center'}} >
         <View style={{justifyContent:'space-between'}} >
           <View style={{alignSelf:'center',marginBottom:30}} >
           <View style={{alignSelf:'center',marginBottom:25}} >
-          <Button style={{width:300,alignText:'center',justifyContent:'center',color:'#3E88FB'}} onPress={next} >
+          <Button style={{width:300,alignText:'center',justifyContent:'center',backgroundColor:'#37A1F6'}} onPress={next} >
               <Text style={{fontSize:18,fontWeight:'400',alignSelf:'center',color:'white'}} >Continue</Text>
           </Button>
           </View>

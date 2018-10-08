@@ -43,7 +43,7 @@ export default class VerifyPhoneScreen extends Component {
         <View style={{justifyContent:'space-between'}} >
           <View style={{alignSelf:'center',marginBottom:30}} >
           <View style={{alignSelf:'center',marginBottom:25}} >
-          <Button style={{width:300,alignText:'center',justifyContent:'center'}} onPress={next} >
+          <Button style={{width:300,alignText:'center',justifyContent:'center',backgroundColor:'#37A1F6'}} onPress={next} >
               <Text style={{fontSize:18,fontWeight:'400',alignSelf:'center',color:'white'}} >Verify & Signup</Text>
           </Button>
           </View>

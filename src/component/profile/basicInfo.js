@@ -1,8 +1,10 @@
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View, Dimensions, TextInput} from 'react-native';
 import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux'
-import { TabNavigator } from 'react-navigation'
+import { connect } from 'react-redux';
+import { TabNavigator } from 'react-navigation';
+import DateTimePicker from 'react-native-modal-datetime-picker';
+import moment from 'moment'
 import { Container, Header, Content, Segment, Button, Item, Label, Input } from 'native-base';
 
 
@@ -11,6 +13,14 @@ export default class BasicInfo extends Component {
         header:null
     };
   render() {
+    const {
+        firstName,
+        lastName,
+        dateOfBirth,
+        focus,
+        isDateTimePickerVisible
+    } = this.props.state;
+    const { onChange, onFocus, handleDatePicked, hideDateTimePicker, showDateTimePicker } = this.props;
     return (
       <View style={styles.container}>
             <View style={{marginTop:5}} >
@@ -18,7 +28,7 @@ export default class BasicInfo extends Component {
             <View style={{flexDirection:'row',marginLeft:20,marginTop:15}} >
                 <Item  floatingLabel style={{flex:1,marginRight:15}} >
                     <Label>First Name</Label>
-                    <Input value={''} onFocus={()=>{  }} onChangeText={(e)=>{  }} keyboardType={'email-address'} type={'email'} />
+                    <Input value={firstName} onFocus={()=>{ onFocus('firstname') }} onChangeText={(e)=>{ onChange('firstName',e) }} />
                 </Item>
             </View>
         </View>
@@ -26,7 +36,7 @@ export default class BasicInfo extends Component {
             <View style={{flexDirection:'row',marginLeft:20,marginTop:15}} >
                 <Item floatingLabel style={{flex:1,marginRight:15}} >
                     <Label>Last Name</Label>
-                    <Input value={''} onFocus={()=>{  }} onChangeText={(e)=>{  }}  />
+                    <Input value={lastName} onFocus={()=>{ onFocus('lastName') }} onChangeText={(e)=>{ onchange('lastName',e) }}  />
                 </Item>
             </View>
         </View>
@@ -34,17 +44,23 @@ export default class BasicInfo extends Component {
             <View style={{flexDirection:'row',marginLeft:20,marginTop:15,paddingBottom:5}} >
                 <Item floatingLabel style={{flex:1,marginRight:15}} >
                     <Label>Date Of Birth</Label>
-                    <Input value={''} onFocus={()=>{  }} onChangeText={(e)=>{  }} />
+                    <Input value={moment(dateOfBirth).format('MMMM DD, YYYY')} caretHidden={true} onFocus={()=> showDateTimePicker('dob') } onChangeText={(e)=>{  }} />
                 </Item>
             </View>
         </View>
       </View>
+    <DateTimePicker
+    isVisible={isDateTimePickerVisible}
+    maximumDate={new Date()}
+    onConfirm={handleDatePicked}
+    onCancel={hideDateTimePicker}
+    />
 
     <View style={{marginTop:25,justifyContent:'center',alignItems:'center'}} >
         <View style={{justifyContent:'space-between'}} >
           <View style={{alignSelf:'center',marginBottom:30}} >
           <View style={{alignSelf:'center',marginBottom:20}} >
-          <Button style={{width:300,alignText:'center',justifyContent:'center'}}   >
+          <Button style={{width:300,alignText:'center',justifyContent:'center',backgroundColor:'#37A1F6'}}   >
               <Text style={{fontSize:18,fontWeight:'400',alignSelf:'center',color:'white'}} >Save Change</Text>
           </Button>
           </View>
