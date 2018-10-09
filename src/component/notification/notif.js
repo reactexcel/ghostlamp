@@ -29,7 +29,7 @@ class Notifications extends Component {
             <View style={{height:80,margin:14,borderBottomWidth:0.5,borderBottomColor:'gray'}} >
             <View style={{flexDirection:'row',flex:1}} >
                 <View style={{justifyContent:'center',marginLeft:20,}} >
-                  <Icon name="mail" />
+                  {/* <Icon name="mail" /> */}
                 </View>
                 <View style={{flex:1,marginTop:5,marginLeft:30}} >
                   <Text style={{alignItems:'center'}} >
