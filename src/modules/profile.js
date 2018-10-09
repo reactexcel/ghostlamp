@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux'
 import { TabNavigator } from 'react-navigation';
 import moment from 'moment';
+import ImagePicker from 'react-native-image-picker';
 import { Container, Header, Content, Segment, Button } from 'native-base';
 import * as action from '../actions/index';
 import * as helper from '../helper';
@@ -82,6 +83,29 @@ class Profile extends Component {
     this._hideDateTimePicker();
   };
 
+  addImage =e =>{
+    var options = {
+      title: 'Select Image for Restaurant',
+      storageOptions: {
+        skipBackup: true,
+        path: 'images'
+      }
+    };
+
+    ImagePicker.showImagePicker(options, (response) => {
+      console.log('Response = ', response);
+      if (response.didCancel) {
+        console.log('User cancelled image picker');
+      }else if (response.error) {
+        console.log('ImagePicker Error: ', response.error);
+      }else if (response.customButton) {
+        console.log('User tapped custom button: ', response.customButton);
+      }else {
+        this.setState({photo:response})
+      }
+    });
+  }
+
 
   render() {
       let selection = this.state.selection;
@@ -105,6 +129,7 @@ class Profile extends Component {
           <ProfilePic 
             state={this.state}
             onFocus={this.onFocus}
+            addImage={this.addImage}
           />
         }
         {

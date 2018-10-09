@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View, Dimensions, TextInput, Image } from 'react-native';
+import {Platform, StyleSheet, Text, View, Dimensions, TextInput, Image, TouchableOpacity } from 'react-native';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux'
 import { TabNavigator } from 'react-navigation'
@@ -11,12 +11,33 @@ export default class ProfilePic extends Component {
         header:null
     };
   render() {
+      const {
+          photo
+      } = this.props.state;
+      const { addImage } = this.props;
+      let url
+      if(photo != '')
+       url = `data:image/${photo.fileName.split('.')[1]};base64,${photo.data}`
     return (
       <View style={styles.container}>
             <View style={{alignItems:'center'}} >
+            <TouchableOpacity onPress={addImage} >
+               { photo == ''?
                 <Image
+                    source={{
+                        uri: 'https://www.sparklabs.com/forum/styles/comboot/theme/images/default_avatar.jpg'
+                      }}
                     style={{height:150,width:150,borderRadius:10,borderWidth:1,marginTop:80}}
                 />
+                :
+                <Image
+                    source={{
+                        uri: url
+                      }}
+                    style={{height:150,width:150,borderRadius:10,marginTop:80}}
+                />
+                }
+            </TouchableOpacity>
 
                 <Text style={{fontSize:17,marginTop:20}} >
                     Upload Profile Picture
