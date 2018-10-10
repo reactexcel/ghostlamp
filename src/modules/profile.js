@@ -113,13 +113,13 @@ class Profile extends Component {
     return (
       <View style={styles.container}>
         <Segment style={Platform.OS == 'android'?{backgroundColor:'#37A1F6',marginTop:15}:{marginTop:15}} >
-          <Button first style={Platform.OS == 'android' ? {width:140,height:40,borderRightWidth:0,justifyContent:'center',borderTopLeftRadius:10,borderBottomLeftRadius:10}:{width:140,height:40,borderRightWidth:0,justifyContent:'center'}}  active={selection == 0?true:false} onPress={()=>{ this.setState({selection:0}) }}  >
+          <Button first style={Platform.OS == 'android' ? {width:140,height:40,borderColor:'gray',borderRightWidth:0,justifyContent:'center',borderTopLeftRadius:10,borderBottomLeftRadius:10}:{width:140,borderColor:'gray',height:40,borderRightWidth:0,justifyContent:'center'}}  active={selection == 0?true:false} onPress={()=>{ this.setState({selection:0}) }}  >
             <Text style={[selection == 0 ? {color:TextColor,fontSize:16}:{fontSize:16}]} >Profile Picture</Text>
           </Button>
-          <Button style={{width:100,height:40,borderRightWidth:0,justifyContent:'center'}} active={selection == 1?true:false} onPress={()=>{ this.setState({selection:1}) }} >
+          <Button style={{width:100,borderColor:'gray',height:40,borderRightWidth:0,justifyContent:'center'}} active={selection == 1?true:false} onPress={()=>{ this.setState({selection:1}) }} >
             <Text style={[selection == 1 ? {color:TextColor,fontSize:16}:{fontSize:16}]} >Basic Info</Text>
           </Button>
-          <Button last style={Platform.OS == 'android'?{width:100,height:40,justifyContent:'center',borderBottomRightRadius:10,borderTopRightRadius:10}:{width:100,height:40,justifyContent:'center'}} active={selection == 2?true:false} onPress={()=>{ this.setState({selection:2}) }} >
+          <Button last style={Platform.OS == 'android'?{width:100,height:40,borderColor:'gray',justifyContent:'center',borderBottomRightRadius:10,borderTopRightRadius:10}:{width:100,borderColor:'gray',height:40,justifyContent:'center'}} active={selection == 2?true:false} onPress={()=>{ this.setState({selection:2}) }} >
             <Text style={[selection == 2 ? {color:TextColor,fontSize:16}:{fontSize:16}]} >Location</Text>
           </Button>
         </Segment>

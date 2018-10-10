@@ -1,9 +1,7 @@
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View, Dimensions, TextInput} from 'react-native';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux'
-import { TabNavigator } from 'react-navigation'
-import { Container, Header, Content, Segment, Button } from 'native-base';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import { Container, Header, Title,Content, Segment,  Button,Left, Right, Body,Item, Input } from 'native-base';
 
 
 export default class Search extends Component {
@@ -12,8 +10,28 @@ export default class Search extends Component {
     };
   render() {
     return (
-      <View style={styles.container}>
-            <View style={{flex:0.1,flexDirection:'row',justifyContent:'space-between'}} >
+      <View style={styles.mail}>
+            <Header span >
+              <Left>
+                <Button transparent>
+                  { Platform.OS == 'android' ?<Icon name="arrow-back" />:null}
+                </Button>
+              </Left>
+              <Body style={{justifyContent:'center',alignItems:'center'}} >
+                <Title> Search </Title>
+                <View style={{margin:20,width:270 ,height:20  }} >
+                <Item rounded style={{backgroundColor:'lightgray',height:40}} >
+                  <Icon name='search' style={{marginLeft:15,color:'gray'}} size={15} />
+                  <Input placeholder='Type anything'/>
+                </Item>
+                </View>
+              </Body>
+              <Right >
+                <Icon name='search' size={15} style={{marginRight:15,marginTop:10}} onPress={()=>{navigation.navigate('Search')}} />
+              </Right>
+            </Header>
+            <View style={styles.container} >
+            <View style={{flexDirection:'row',justifyContent:'space-between'}} >
                 <View style={{justifyContent:'center'}} >
                 <Text style={{fontSize:21}} > Recent Search </Text>
                 </View>
@@ -22,8 +40,9 @@ export default class Search extends Component {
                 </View>
             </View>
             <View style={{flex:1}} >
-
+              // flat list for result
             </View>
+      </View>
       </View>
     );
   }
@@ -33,9 +52,12 @@ export default class Search extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     marginLeft:20,
     marginRight:20,
-    marginTop:10,
+    marginTop: 20 
+  },
+  main: {
+    flex:1
   }
+
 });

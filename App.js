@@ -45,7 +45,7 @@ const tabView =  createBottomTabNavigator(
 
         // You can return any component that you like here! We usually use an
         // icon component from react-native-vector-icons
-        return <Icon name={iconName} style={[focused?{color:'#3E88FB',marginTop:5}:{color:'gray',marginTop:5}]} size={25} color="#3E88FB" />;
+        return <Icon name={iconName} style={[focused?{color:'#3E88FB',marginTop:5}:{color:'gray',marginTop:5}]} size={20} color="#3E88FB" />;
       },
     }),
     tabBarOptions: {
@@ -58,6 +58,7 @@ const tabView =  createBottomTabNavigator(
 );
 
 export const AppScreen = StackNavigator({
+  splashScreen: { screen: SplashScreen },
   home: { screen: tabView, navigationOptions:({navigation})=>{
     const { routes, index } = navigation.state;
     const navigationOptions = {};
@@ -77,9 +78,8 @@ export const AppScreen = StackNavigator({
         navigationOptions.header = null;
       }
     }
-      return navigationOptions;
+    return navigationOptions;
   } },
-  splashScreen: { screen: SplashScreen },
   welcomeScreen: { screen: WelcomeScreen },
   login: { screen: LoginScreen },
   signup: { screen: Signup },

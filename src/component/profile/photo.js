@@ -1,9 +1,8 @@
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View, Dimensions, TextInput, Image, TouchableOpacity } from 'react-native';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux'
-import { TabNavigator } from 'react-navigation'
+import { TabNavigator } from 'react-navigation';
 import { Container, Header, Content, Segment, Button } from 'native-base';
+import PicProfile from '../../images/profilePic.png'
 
 
 export default class ProfilePic extends Component {
@@ -24,22 +23,20 @@ export default class ProfilePic extends Component {
             <TouchableOpacity onPress={addImage} >
                { photo == ''?
                 <Image
-                    source={{
-                        uri: 'https://www.sparklabs.com/forum/styles/comboot/theme/images/default_avatar.jpg'
-                      }}
-                    style={{height:150,width:150,borderRadius:10,borderWidth:1,marginTop:80}}
+                    source={require('../../images/profilePic.png')}
+                    style={{height:130,width:130,borderRadius:10,marginTop:50}}
                 />
                 :
                 <Image
                     source={{
                         uri: url
                       }}
-                    style={{height:150,width:150,borderRadius:10,marginTop:80}}
+                    style={{height:130,width:130,borderRadius:10,marginTop:50}}
                 />
                 }
             </TouchableOpacity>
 
-                <Text style={{fontSize:17,marginTop:20}} >
+                <Text style={{fontSize:17,marginTop:60}} >
                     Upload Profile Picture
                 </Text>
                 

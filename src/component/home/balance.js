@@ -12,7 +12,7 @@ export default class Balance extends Component {
       <View style={styles.container}>
           <Content>
           <Card style={{borderRadius:10,borderWidth:0.4,borderColor:'gray'}} >
-            <CardItem style={{borderWidth:0.4,borderTopLeftRadius:10,borderTopRightRadius:10,borderColor:'gray',backgroundColor:'white'}}>
+            <CardItem style={{borderWidth:0.1,borderTopLeftRadius:10,borderTopRightRadius:10,borderColor:'gray',backgroundColor:'white'}}>
             <View style={{flex:1}} >
               <View style={{flexDirection:'row',marginTop:10,justifyContent:'space-between',flex:1}} >
                 <View>
@@ -52,7 +52,7 @@ export default class Balance extends Component {
               </View>
               </View>
             </CardItem>
-            <CardItem footer style={{borderBottomLeftRadius:10,borderBottomRightRadius:10,borderWidth:0.4,borderColor:'gray',backgroundColor:'#EDF2F5'}}>
+            <CardItem footer style={{borderBottomLeftRadius:10,borderBottomRightRadius:10,borderWidth:0.1,borderTopWidth:0.4,borderColor:'gray',backgroundColor:'#EDF2F5'}}>
             <View style={{flexDirection:'row',marginTop:10,marginBottom:10,justifyContent:'space-between',flex:1}} >
                 <View>
                     <Text style={{fontSize:17}} >
