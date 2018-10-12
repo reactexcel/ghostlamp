@@ -42,9 +42,6 @@ const tabView =  createBottomTabNavigator(
         }else if (routeName === 'Profile') {
           iconName = `user`;
         }
-
-        // You can return any component that you like here! We usually use an
-        // icon component from react-native-vector-icons
         return <Icon name={iconName} style={[focused?{color:'#3E88FB',marginTop:5}:{color:'gray',marginTop:5}]} size={20} color="#3E88FB" />;
       },
     }),

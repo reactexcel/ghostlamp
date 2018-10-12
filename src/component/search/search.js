@@ -40,7 +40,6 @@ export default class Search extends Component {
                 </View>
             </View>
             <View style={{flex:1}} >
-              // flat list for result
             </View>
       </View>
       </View>
